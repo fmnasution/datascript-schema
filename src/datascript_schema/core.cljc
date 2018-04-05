@@ -109,7 +109,7 @@
     :db/ident :db/cardinality
     :db/valueType -1}])
 
-(defn bootstrap!
+(defn listen-on-schema-change!
   ([conn handler]
    (let [callback (fn [tx-report]
                     (apply-delta-schema! conn tx-report)
@@ -119,4 +119,8 @@
      (d/transact conn initial-tx-data)
      ::bootstrapped))
   ([conn]
-   (bootstrap! conn (constantly nil))))
+   (listen-on-schema-change! conn (constantly nil))))
+
+(defn unlisten-schema-change!
+  [conn]
+  (d/unlisten! conn ::schema))
