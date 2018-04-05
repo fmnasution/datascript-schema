@@ -18,13 +18,23 @@ Preparing
 
 (def conn (d/create-conn))
 
-(ds/bootstrap! conn)
+(ds/listen-on-schema-change! conn)
+
+;; or you can attach callback
+;;
+;; (defn callback
+;;   [tx-report]
+;;   do something)
+;;
+;; (ds/listen-on-schema-change! conn callback)
 
 (defn current-schema
   []
   (:schema @conn))
 
 ```
+
+Schema is data that has `:db/ident` under the same `eid`
 
 Actually trying it
 
