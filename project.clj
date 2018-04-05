@@ -1,4 +1,4 @@
-(defproject datascript-schema "0.1.0"
+(defproject datascript-schema "0.2.0"
   :description "Datomic-like schema"
   :url "http://github.com/fmnasution/datascript-schema"
   :license {:name "Eclipse Public License"
