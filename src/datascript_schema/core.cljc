@@ -115,8 +115,8 @@
                     (apply-delta-schema! conn tx-report)
                     (handler tx-report))]
      (update-schema-map! conn merge initial-schema)
-     (d/listen! conn ::schema callback)
      (d/transact conn initial-tx-data)
+     (d/listen! conn ::schema callback)
      ::bootstrapped))
   ([conn]
    (listen-on-schema-change! conn (constantly nil))))
